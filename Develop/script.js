@@ -2,7 +2,7 @@
 // Assignment Code
 const generateBtn = document.querySelector("#generate");
 //console.log(generateBtn);
-function passwordLength(){
+function askPasswordLength(){
 // series of prompts for password
 
 // first password length
@@ -22,8 +22,7 @@ const uppercaseCharacters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', '
 const lowercaseCharacters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 const specialCharacters = ['@','%','+','\\',"'",'!','#','$','^','?',':',',', ')', '(', '}', '{', ']', '[', '~','-', '_','.'];
 
-
-
+}
 //asking questions
 function askCriteria(){
 //character types 
@@ -39,13 +38,16 @@ if  (lowerC == true|| upperC == true|| numberC == true|| specialC == true){
     lowerC,upperC,numberC,specialC,
   };
 }
-// if user didn't do that, reask the criteria questions
+
+// if user didn't do that, re-ask the criteria questions
 return askCriteria();
-}
-    
+
+} 
 
 //when user click on button
-generateButton.addEventListener('click',function(event){
+
+generateBtn.addEventListener('click',function(event){
+ 
   const passwordLength = askPasswordLength();
   const criteria = askCriteria();
 
@@ -84,6 +86,6 @@ for  (let index = 0; index < passwordLength; index++){
 });
 
 
-}
+
 
 
