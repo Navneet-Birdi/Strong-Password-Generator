@@ -1,8 +1,8 @@
 
 // Assignment Code
 const generateBtn = document.querySelector("#generate");
-console.log(generateBtn);
-function generatePassword(){
+//console.log(generateBtn);
+function passwordLength(){
 // series of prompts for password
 
 // first password length
@@ -22,8 +22,10 @@ const uppercaseCharacters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', '
 const lowercaseCharacters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 const specialCharacters = ['@','%','+','\\',"'",'!','#','$','^','?',':',',', ')', '(', '}', '{', ']', '[', '~','-', '_','.'];
 
-const selectedCharacters = []; //empty array to print selected characters as a password
 
+
+//asking questions
+function askCriteria(){
 //character types 
 const lowerC = confirm("Do you want to use lower case characters?");
 const upperC = confirm("Do you want to use upper case characters?");
@@ -32,87 +34,56 @@ const specialC = confirm("Do yu want to use special characters?");
  
 // check if prompts have been selected for password
 
-if  (lowerC == true||
-    upperC == true||
-    numberC == true||
-    specialC == true)
+if  (lowerC == true|| upperC == true|| numberC == true|| specialC == true){
+  return{
+    lowerC,upperC,numberC,specialC,
+  };
+}
+// if user didn't do that, reask the criteria questions
+return askCriteria();
+}
+    
 
-    //for lowercase letters
-    {
+//when user click on button
+generateButton.addEventListener('click',function(event){
+  const passwordLength = askPasswordLength();
+  const criteria = askCriteria();
+
+
+  //generating a password and building a character set
+
+  let selectedCharacters = []; //empty array to print selected characters as a password
+
   if (lowerC == true){
-selectedCharacters += lowercaseCharacters;
-  }
-
-  //for upper case
-  {
-    if (upperC == true){
-      selectedCharacters += uppercaseCharacters;
-        }
-  }
-
- //for numbers
- {
-  if (numberC == true){
-    selectedCharacters += numericCharacters;
+    selectedCharacters = selectedCharacters + lowercaseCharacters;
       }
-}
 
-//for special characters
-{
+ if (upperC == true){
+selectedCharacters = selectedCharacters + uppercaseCharacters;
+          }
+
+ if (numberC == true){
+    selectedCharacters = selectedCharacters + numericCharacters;
+          }
+
   if (specialC == true){
-    selectedCharacters += specialCharacters;
-      }
+    selectedCharacters = selectedCharacters + specialCharacters;
+          }
+            
+
+
+// password 
+
+let password = "";
+for  (let index = 0; index < passwordLength; index++){
+  const randomCharacter = selectedCharacters[ Math.floor(Math.random() * selectedCharacters.length) ]
+  password += randomCharacter;
 }
+ document.getElementById('password').value = password;
 
-//now as each prompt answered, to validate input
-console.log(selectedCharacters);
-
-//if not anything selected
-else{
-  alert("Please select at least one type");
-}
-
-
-generatePassword(passwordLength);
-}
-
-
-
+});
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Write password to the #password input
-function writePassword() {
-  const password = generatePassword();
-  const passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
-}
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
-
-
-
-
-
 
 
