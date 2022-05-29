@@ -46,7 +46,9 @@ if  (lowerC == true|| upperC == true|| numberC == true|| specialC == true){
     lowerC,upperC,numberC,specialC,
   };
 }
-
+else{
+  alert("Please select at least one character type");
+}
 
 // if user didn't do that, re-ask the criteria questions
 return askCriteria();
