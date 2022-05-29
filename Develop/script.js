@@ -63,7 +63,7 @@ generateBtn.addEventListener('click',function(event){
 
 
 //generating a password and building a character set
- let selectedCharacters = "";
+ let selectedCharacters = [];
 
   if (criteria.lowerC === true){
     selectedCharacters.push(...lowercaseCharacters);
