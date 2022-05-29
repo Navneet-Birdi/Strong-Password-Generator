@@ -10,22 +10,20 @@ const uppercaseCharacters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', '
 const lowercaseCharacters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 const specialCharacters = ['@','%','+','\\',"'",'!','#','$','^','?',':',',', ')', '(', '}', '{', ']', '[', '~','-', '_','.'];
 
-
 //console.log(generateBtn);
 function askPasswordLength(){
 
-
 // series of prompts for password
 // first password length
-const passwordLength = Number(prompt("Select a password length between 8 and 128"));
+const passwordLength = parseInt(prompt("Select a password length between 8 and 128"));
 
-
+console.log(passwordLength);
 //can only accept numeric value
 
 //if password length correct
-if (passwordLength <=8 || passwordLength >= 128 || isNaN(passwordLength)){ 
-  console.log(passwordLength);
-  askPasswordLength();
+if (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength)){ 
+  //console.log(passwordLength);
+ return askPasswordLength();
 }
 return passwordLength;
 }
@@ -45,9 +43,6 @@ if  (lowerC == true|| upperC == true|| numberC == true|| specialC == true){
   return{
     lowerC,upperC,numberC,specialC,
   };
-}
-else{
-  alert("Please select at least one character type");
 }
 
 // if user didn't do that, re-ask the criteria questions
@@ -87,7 +82,7 @@ generateBtn.addEventListener('click',function(event){
 let password = "";
 for  (let index = 0; index < passwordLength; index++){
   const randomCharacter = selectedCharacters[ Math.floor(Math.random() * selectedCharacters.length) ]
-  console.log(randomCharacter);
+ 
   password += randomCharacter;
 }
  document.getElementById('password').value = password;
