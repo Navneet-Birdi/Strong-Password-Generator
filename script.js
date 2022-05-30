@@ -16,13 +16,12 @@ function askPasswordLength(){
 // series of prompts for password
 // first password length
 const passwordLength = parseInt(prompt("Select a password length between 8 and 128"));
-
 console.log(passwordLength);
 //can only accept numeric value
 
 //if password length correct
 if (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength)){ 
-  //console.log(passwordLength);
+
  return askPasswordLength();
 }
 return passwordLength;
@@ -43,8 +42,11 @@ if  (lowerC == true|| upperC == true|| numberC == true|| specialC == true){
   return{
     lowerC,upperC,numberC,specialC,
   };
-}
 
+}
+else{
+  alert("PLEASE SELECT AT LEAST ONE CHARACTER TYPE \n THANK YOU");
+}
 // if user didn't do that, re-ask the criteria questions
 return askCriteria();
 } 
